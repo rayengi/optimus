@@ -9,7 +9,7 @@ import logica.Producto;
 
 /**
  *
- * @author Bizagi
+ * @author Grupo Optimus
  */
 
 /*Clase de gestion de base de datos de productos- Consulta la informacion (Read-Leer-) y 

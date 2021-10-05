@@ -8,6 +8,8 @@ package logica;
 import java.util.ArrayList;
 import persistencia.ProductoDAO;
 
+//Esta clase para que se utilizará?
+
 public class ColeccionProductos {   
    
     private ArrayList<Producto> lista;

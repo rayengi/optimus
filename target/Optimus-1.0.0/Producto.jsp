@@ -1,9 +1,9 @@
 <%-- 
     Document   : Producto
     Created on : Sep 29, 2021, 7:25:42 AM
-    Author     : Bizagi
+    Author     : Grupo Optimus
 --%>
-
+<%//El nombre de la pagina podria comenzar en minuscula%>
 <%@page import="logica.Producto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

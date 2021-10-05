@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 import persistencia.ProductoDAO;								   
 
-public class ColeccionProductos {
+//public class ColeccionProductos {    /*Esta parte no es coherente*/
     
     public class LogicaProductos {
         private ArrayList<Producto> lista;
@@ -20,7 +20,7 @@ public class ColeccionProductos {
     
 	public String getIdTipoReferencia(int key) {
             ProductoDAO dao = new ProductoDAO();
-            TreeMap<Integer, String> listaTipoReferencia = dao.cargarTipoReferencia();
+            TreeMap<Integer, String> listaTipoReferencia = dao.cargarTipoReferencia();  //En la clase ProductoDAO no existe este metodo, la clase tipo de referencia no se ha creado
             String value = listaTipoReferencia.get(key);
             return value;
 	}
@@ -33,7 +33,7 @@ public class ColeccionProductos {
 	
 	public String getIdEspecificaciones(int key) {
             ProductoDAO dao = new ProductoDAO();
-            TreeMap<Integer, String> listaEspecificaciones = dao.cargarEspecificaciones();
+            TreeMap<Integer, String> listaEspecificaciones = dao.cargarEspecificaciones(); //No se ha creado el metodo cargar Especificaciones-Crear Clase Especificaciones
             String value = listaEspecificaciones.get(key);
             return value;
 	}
@@ -57,7 +57,7 @@ public class ColeccionProductos {
     
 	public boolean cargarProductoPorFiltro(String filtro) {
             ProductoDAO dao = new ProductoDAO();
-            lista = dao.consultarProductoPorFiltro(filtro);
+            lista = dao.consultarProductoPorFiltro(filtro); //Este metodo no existe
             if (lista.size() > 0) {
 				return true;
             }
@@ -68,7 +68,7 @@ public class ColeccionProductos {
 	    
     public Producto cargarUnJuguete(int idProducto) {
         ProductoDAO dao = new ProductoDAO();
-        Producto p = dao.consultarProducto(idProducto);
+        Producto p = dao.consultarProducto(idProducto);  //Revisar instruccion
         return p;
     }												  
 										  
@@ -84,7 +84,7 @@ public class ColeccionProductos {
                 }
             }
             else {
-                int filas = dao.guardarProductoExistente(p);
+                int filas = dao.guardarProductoExistente(p);  //metodo no existe
 				if (filas == 1) {
                     return true;
 				} 
@@ -94,4 +94,4 @@ public class ColeccionProductos {
            }
 	}
     }   	
-}
+//}

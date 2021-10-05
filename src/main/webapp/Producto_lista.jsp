@@ -1,12 +1,12 @@
 <%-- 
     Document   : producto_lista
 										  
-	Author     : Bizagi
+	Author     : Grupo Optimus
 --%>
 
-<%@page import="logica.LogicaProductos"%>
+<%@page import="logica.LogicaProductos"%> 
 <%@page import="logica.Producto"%>
-<%@page import="logica.ColeccionProductos"%>
+<%@page import="logica.ColeccionProductos"%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
