@@ -2,9 +2,10 @@ package logica;
 
 /**
  *
- * @author Bizagi
+ * @author Grupo Optimus
  */
 public class Usuario {
+    //Atributos
     private int id;
     private String nombrecompleto;
     private String usuario;
@@ -13,7 +14,7 @@ public class Usuario {
     private String parentesco;
     private String rol;
 
-    
+    //Constructores
     public Usuario() {
     }
 
@@ -32,7 +33,7 @@ public class Usuario {
         this(nombrecompleto, usuario, passw, fechanacimiento, parentesco, rol);
         this.id = id;
     }
-
+    //Getters and Setters
     public int getId() {
         return id;
     }

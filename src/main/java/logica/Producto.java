@@ -2,14 +2,16 @@ package logica;
 
 /**
  *
- * @author Bizagi
+ * @author Grupo Optimus
  */
-public class Producto {   
+//Clase Producto para crear objetos productos de acuerdo a base de datos
+public class Producto { 
+    //Atributos
     private int idProducto;
     private String NombreProducto;
     private int idTipoReferencia;
     private int idEspecificaciones;
-
+    //Costructores
     public Producto() {
     }  
 
@@ -25,7 +27,7 @@ public class Producto {
         this.idTipoReferencia = idTipoReferencia;
         this.idEspecificaciones = idEspecificaciones;
     }
-    
+    //Getters and Setters
     public int getIdProducto() {
         return idProducto;
     }

@@ -9,16 +9,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+//Conexion base de datos
 public class ConexionBD {
     private String conectorInstalado = "jdbc:mysql:";
     private String host = "localhost:3306";
     private String baseDatos = "dboptimus";
-    private String username = "root";
-    private String password = "root";										
+    private String username = "root"; 
+    private String password = "root"; //Puede variar según la base de datos local										
     private Connection conexion;
     private Statement ejecutor;
 
+    //Acá se conecta la base de datos - Hay prueba unitaria para verificar
     public ConexionBD() {
         conectar();
     }

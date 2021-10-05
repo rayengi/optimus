@@ -12,8 +12,8 @@ import logica.Producto;
  * @author Bizagi
  */
 
-/*Clase de gestíon de base de datos de productos- Consulta la información (Read-Leer-) y 
-Envia la información para archivar(Inserta información nueva -Create- o 
+/*Clase de gestion de base de datos de productos- Consulta la informacion (Read-Leer-) y 
+Envia la informacion para archivar(Inserta información nueva -Create- o 
 Actualiza -Update-). */
 
 public class ProductoDAO {
