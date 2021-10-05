@@ -9,10 +9,11 @@ import logica.Usuario;
 
 /**
  *
- * @author Bizagi
+ * @author Grupo Optimus
  */
+/*Clase para gestion de la base de datos Usuarios*/
 public class UsuarioDAO {
-    
+    //Metodo para consultar Usuarios - Read - cargar 
     public ArrayList<Usuario> consultarUsuarios() {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         String sql = "SELECT id, nombrecompleto, usuario, passw, fechanacimiento, parentesco, rol " +
@@ -34,13 +35,13 @@ public class UsuarioDAO {
         } 
         catch (Exception e) {
             e.printStackTrace();
-            con.desconectar();
+            con.desconectar(); //Aca se cierra base de datos
             return null;
         }
         con.desconectar();
         return lista;
     }
-    
+    //Metodo para consultar Usuarios - Read - un usuario especifico
     public Usuario consultarUsuario(int idAConsultar) {
         Usuario u = null;
         String sql = "SELECT id, nombrecompleto, usuario, passw, fechanacimiento, parentesco, rol " +
@@ -68,7 +69,7 @@ public class UsuarioDAO {
         con.desconectar();
         return u;
     }
-    
+    //Metodo para consultar de acuerdo a un filtro o criterio
     public ArrayList<Usuario> consultarUsuariosPorFiltro(String filtro) {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         String sql = "SELECT id, nombrecompleto, usuario, passw, fechanacimiento, parentesco, rol " +
@@ -99,7 +100,7 @@ public class UsuarioDAO {
         con.desconectar();
         return lista;
     }
-    
+    //Metodo para crear nuevo usuario
     public int guardarNuevoUsuario(Usuario u) {
         int id = 0;
         String sql = "INSERT INTO usuarios (nombrecompleto, usuario, passw, fechanacimiento, parentesco, rol) " +
@@ -117,7 +118,7 @@ public class UsuarioDAO {
         }
         return id;
     }
-    
+    //Metodo para actualizar usuario existente.
     public int guardarUsuarioExistente(Usuario u) {
         int filas = 0;
         String sql = "UPDATE usuarios " +
