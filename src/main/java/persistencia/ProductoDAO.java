@@ -11,8 +11,13 @@ import logica.Producto;
  *
  * @author Bizagi
  */
-public class ProductoDAO {
 
+/*Clase de gestíon de base de datos de productos- Consulta la información (Read-Leer-) y 
+Envia la información para archivar(Inserta información nueva -Create- o 
+Actualiza -Update-). */
+
+public class ProductoDAO {
+    //Este método realiza la consulta a la base de datos de productos
     public ArrayList<Producto> consultarProductos() {
         ArrayList<Producto> lista = new ArrayList<>();
         ConexionBD con = new ConexionBD();
@@ -26,14 +31,14 @@ public class ProductoDAO {
                 Producto j = new Producto(idProducto, NombreProducto, idTipoReferencia, idEspecificaciones);			   		   
                 lista.add(j);
             }
-        } catch (SQLException ex) {
-							  
+        } catch (SQLException ex) {						  
             return null;
         }
-		con.desconectar();				  
+        con.desconectar();				  
         return lista;
     }
-	
+
+    //Metodo para Insertar nuevo producto (Create)
     public int guardarNuevoProducto(Producto p) {
         ConexionBD con = new ConexionBD();
         String NombreProducto = p.getNombreProducto();
