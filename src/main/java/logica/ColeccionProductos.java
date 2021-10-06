@@ -1,6 +1,6 @@
 /**
  *
- * @author Bizagi
+ * @author Grupo Optimus
  */
 
 package logica;
