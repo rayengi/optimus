@@ -13,7 +13,7 @@ public class Usuario {
     private String fechanacimiento;
     private String parentesco;
     private String rol;
-
+//Se puede simplificar y dejar solamente id, nombre completo, usuario, passw, cargo
     //Constructores
     public Usuario() {
     }
