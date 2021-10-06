@@ -8,7 +8,7 @@ package logica;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import persistencia.ProductoDAO;								   
-
+//Contiene la logica requerida para gestionar la informacion de los productos
 //public class ColeccionProductos {    /*Esta parte no es coherente*/
     
     public class LogicaProductos {
@@ -17,14 +17,14 @@ import persistencia.ProductoDAO;
 	public ArrayList<Producto> getLista() {
         return lista;
 	}
-    
+    //Obtiene el nombre del tipo de referencia de producto dado en el Id correspondiente
 	public String getIdTipoReferencia(int key) {
             ProductoDAO dao = new ProductoDAO();
             TreeMap<Integer, String> listaTipoReferencia = dao.cargarTipoReferencia();  //En la clase ProductoDAO no existe este metodo, la clase tipo de referencia no se ha creado
             String value = listaTipoReferencia.get(key);
             return value;
 	}
-	
+	 //Obtiene la lista de los tipos de referencia de los productos
 	public TreeMap<Integer, String> getidTipoReferencia() {
         ProductoDAO dao = new ProductoDAO();   
 		TreeMap<Integer, String> listaTipoReferencia = dao.cargarTiposReferencia();
