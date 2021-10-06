@@ -18,7 +18,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    
+    /* Constructor para añadir un nuevo usuario */
     public Usuario(String nombrecompleto, String usuario, String passw, String fechanacimiento, String parentesco, String rol) {
         this.nombrecompleto = nombrecompleto;
         this.usuario = usuario;
