@@ -28,14 +28,43 @@ public class ProductoDAO {
                 String NombreProducto = rs.getString("NombreProducto");
                 int idTipoReferencia = rs.getInt("idTipoReferencia");
                 int idEspecificaciones = rs.getInt("idEspecificaciones");
-                Producto j = new Producto(idProducto, NombreProducto, idTipoReferencia, idEspecificaciones);			   		   
-                lista.add(j);
+                Producto p = new Producto(idProducto, NombreProducto, idTipoReferencia, idEspecificaciones);			   		   
+                lista.add(p);
             }
         } catch (SQLException ex) {						  
             return null;
         }
         con.desconectar();				  
         return lista;
+    }
+    
+    /**
+     * Envía la sentencia SQL para obtener la información de 1 producto específico y estructura
+     * la respuesta en un objeto de tipo Producto
+     * @param idAConsultar el id del producto para consultar
+     * @return un objeto de tipo Producto con la información cargada o null
+     */
+    public Producto consultarProducto(int idAConsultar) {
+        Producto p = null;
+        ConexionBD con = new ConexionBD();
+        String sql = "SELECT idProducto, NombreProducto, idTipoReferencia, idEspecificaciones " +
+                     "FROM producto "+
+                     "WHERE id = " + idAConsultar + " ";
+        ResultSet rs = con.ejecutarQuery(sql);
+        try {
+            if (rs.next()) {
+                int idProducto = rs.getInt("idProducto");
+                String NombreProducto = rs.getString("NombreProducto");
+                int idTipoReferencia = rs.getInt("idTipoReferencia");
+                int idEspecificaciones = rs.getInt("idEspecificaciones");
+                p = new Producto(idProducto, NombreProducto, idTipoReferencia, idEspecificaciones);
+            }
+        } catch (SQLException ex) {
+            con.desconectar();
+            return p;
+        }
+        con.desconectar();
+        return p;
     }
 
     //Metodo para Insertar nuevo producto (Create)
@@ -59,5 +88,43 @@ public class ProductoDAO {
         }
         con.desconectar();
         return id;
-    }										   	 
+    }
+    //Agrego metodos faltantes
+    /**
+     * Envía la sentencia SQL para obtener la información de ciertos productos mediante filtro y estructura
+     * la respuesta en una lista de tipo Producto
+     * @param filtro el filtro para buscar datos en la lista de productos para consultar
+     * @return un arraylist de tipo Juguete con la información cargada
+     */
+     public ArrayList<Producto> consultarProductosPorFiltro(String filtro) {
+        ArrayList<Producto> lista = new ArrayList<>();
+        ConexionBD con = new ConexionBD();
+        //revisar este codigo, es mysql, hay que crear las FK sino no funciona.
+        String sql = "SELECT p.idProducto, p.NombreProducto, p.idTipoReferencia, t.idTipoReferencia, p.idEspecificaciones, e.idEspecificaciones " +
+                     "FROM producto p " +
+                     "JOIN tiporeferencia t ON (p.idTipoReferencia = t.idTipoReferencia) " +
+                     "JOIN especificaciones e ON (p.idEspecificaciones = e.idEspecificaciones) " +
+                     "WHERE p.NombreProducto LIKE '%" + filtro + "%' " +
+                     "OR t.idTipoReferencia LIKE '%" + filtro + "%' " +
+                     "OR e.idEspecificaciones LIKE '%" + filtro + "%' "; 
+        ResultSet rs = con.ejecutarQuery(sql);
+        try {
+            while (rs.next()) {
+                int idProducto = rs.getInt("idProducto");
+                String NombreProducto = rs.getString("NombreProducto");
+                int idTipoReferencia = rs.getInt("idTipoReferencia");
+                int idEspecificaciones = rs.getInt("idEspecificaciones");
+                Producto p = new Producto(idProducto, NombreProducto, idTipoReferencia, idEspecificaciones);
+                lista.add(p);
+            }
+        } catch (SQLException ex) {
+            con.desconectar();
+            return null;
+        }
+        con.desconectar();
+        return lista;
+    }
+    
+    
+    
 }
