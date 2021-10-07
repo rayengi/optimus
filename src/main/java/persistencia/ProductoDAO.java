@@ -76,7 +76,7 @@ public class ProductoDAO {
         int idTipoReferencia = p.getIdTipoReferencia();
         int idEspecificaciones = p.getIdEspecificaciones();
         
-        String sql = "INSERT INTO juguetes (NombreProducto, idTipoReferencia, idEspecificaciones) VALUES ('"+NombreProducto+"', '"+idTipoReferencia+"', '"+idEspecificaciones+"')";
+        String sql = "INSERT INTO producto (NombreProducto, idTipoReferencia, idEspecificaciones) VALUES ('"+NombreProducto+"', '"+idTipoReferencia+"', '"+idEspecificaciones+"')";
         System.out.println(sql);
         ResultSet rs = con.ejecutarInsert(sql);
         int id = 0;
@@ -154,7 +154,7 @@ public class ProductoDAO {
      */
     //Terminar este metodo -pendiente.
     public TreeMap<Integer, Especificaciones> cargarEspecificaciones() {
-        Especificaciones medidas=new Especificaciones(); //hacer clase
+        // Especificaciones medidas=new Especificaciones(); //hacer clase - listo, hecha
         TreeMap<Integer, Especificaciones> listaEspecificaciones = new TreeMap<Integer, Especificaciones>();
         ConexionBD con = new ConexionBD();
         ResultSet rs = con.ejecutarQuery("SELECT idEspecificaciones, DiametroMin, DiametroMax, LargoMin, LargoMax, Alto, PesoMin, PesoMax  FROM especificaciones ");
@@ -168,9 +168,7 @@ public class ProductoDAO {
                 float Alto = rs.getFloat("Alto");
                 float PesoMin = rs.getFloat("PesoMin");
                 float PesoMax = rs.getFloat("PesoMax");
-                //Crear objeto e incluirlo en listaEspecificaciones
-                
-                listaEspecificaciones.put(idEspecificaciones, medidas);
+                listaEspecificaciones.put(idEspecificaciones, new Especificaciones(DiametroMin, DiametroMax, LargoMin, LargoMax, Alto, PesoMin, PesoMax));
             }
         } catch (SQLException ex) {
             con.desconectar();
@@ -188,4 +186,3 @@ public class ProductoDAO {
     
     
     
-}

@@ -35,16 +35,16 @@ import persistencia.ProductoDAO;
             return listaTipoReferencia;
         }		
 	
-        public String getEspecificacion(int key) {
+        public Especificaciones getEspecificacion(int key) {
             ProductoDAO dao = new ProductoDAO();
-            TreeMap<Integer, String> listaEspecificaciones = dao.cargarEspecificaciones(); //No se ha creado el metodo cargar Especificaciones-Crear Clase Especificaciones
-            String value = listaEspecificaciones.get(key);
+            TreeMap<Integer, Especificaciones> listaEspecificaciones = dao.cargarEspecificaciones(); //No se ha creado el metodo cargar Especificaciones-Crear Clase Especificaciones
+            Especificaciones value = listaEspecificaciones.get(key);
             return value;
         }
       
-        public TreeMap<Integer, String> getEspecificaciones() {
+        public TreeMap<Integer, Especificaciones> getEspecificaciones() {
             ProductoDAO dao = new ProductoDAO();
-            TreeMap<Integer, String> listaEspecificaciones = dao.cargarEspecificaciones();
+            TreeMap<Integer, Especificaciones> listaEspecificaciones = dao.cargarEspecificaciones();
             return listaEspecificaciones;
         }
 	
