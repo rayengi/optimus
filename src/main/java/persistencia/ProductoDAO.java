@@ -3,9 +3,11 @@ package persistencia;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;							   
 import logica.Producto;
+import logica.Especificaciones;        
 
 /**
  *
@@ -123,7 +125,66 @@ public class ProductoDAO {
         }
         con.desconectar();
         return lista;
+     }
+     
+     /**
+     * Cargar los diferentes tipos de juguetes desde la BD
+     * @return un treemap con la lista de los tipos de juguetes
+     */
+    public TreeMap<Integer, String> cargarTipoReferencia() {
+        TreeMap<Integer, String> listaTipos = new TreeMap<Integer, String>();
+        ConexionBD con = new ConexionBD();
+        ResultSet rs = con.ejecutarQuery("SELECT idTipoReferencia, Referencia FROM tiporeferencia ");
+        try {
+            while (rs.next()) {
+                int idTipoReferencia = rs.getInt("idTipoReferencia");
+                String Referencia = rs.getString("Referencia");
+                listaTipos.put(idTipoReferencia, Referencia);
+            }
+        } catch (SQLException ex) {
+            con.desconectar();
+            return null;
+        }
+        con.desconectar();
+        return listaTipos;
     }
+    /*
+     * Cargar los diferentes especificaciones de los productos desde la BD
+     * @return un treemap con la lista de las especificaciones de los productos.
+     */
+    //Terminar este metodo -pendiente.
+    public TreeMap<Integer, Especificaciones> cargarEspecificaciones() {
+        Especificaciones medidas=new Especificaciones(); //hacer clase
+        TreeMap<Integer, Especificaciones> listaEspecificaciones = new TreeMap<Integer, Especificaciones>();
+        ConexionBD con = new ConexionBD();
+        ResultSet rs = con.ejecutarQuery("SELECT idEspecificaciones, DiametroMin, DiametroMax, LargoMin, LargoMax, Alto, PesoMin, PesoMax  FROM especificaciones ");
+        try {
+            while (rs.next()) {
+                int idEspecificaciones = rs.getInt("idEspecificaciones");
+                float DiametroMin = rs.getFloat("DiametroMin");
+                float DiametroMax = rs.getFloat("DiametroMax");
+                float LargoMin = rs.getFloat("LargoMin");
+                float LargoMax = rs.getFloat("LargoMax");
+                float Alto = rs.getFloat("Alto");
+                float PesoMin = rs.getFloat("PesoMin");
+                float PesoMax = rs.getFloat("PesoMax");
+                //Crear objeto e incluirlo en listaEspecificaciones
+                
+                listaEspecificaciones.put(idEspecificaciones, medidas);
+            }
+        } catch (SQLException ex) {
+            con.desconectar();
+            return null;
+        }
+        con.desconectar();
+        return listaEspecificaciones;
+    }
+    
+    
+    
+    
+}   
+     
     
     
     

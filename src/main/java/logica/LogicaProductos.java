@@ -17,27 +17,32 @@ import persistencia.ProductoDAO;
             return lista;
         }
         //Obtiene el nombre del tipo de referencia de producto dado en el Id correspondiente
-        public String getIdTipoReferencia(int key) {
+        /*
+        * Obtiene el nombre del tipo de referencia dado el id correspondiente
+        * @param key el id del tipo de referencia
+        * @return el nombre del tipo de Producto
+        */
+        public String getTipoReferencia(int key) {
             ProductoDAO dao = new ProductoDAO();
-            TreeMap<Integer, String> listaTipoReferencia = dao.cargarTipoReferencia();  //En la clase ProductoDAO no existe este metodo, la clase tipo de referencia no se ha creado
+            TreeMap<Integer, String> listaTipoReferencia = dao.cargarTipoReferencia();  //En la clase ProductoDAO no existe este metodo, la clase tipo de referencia no se ha creado-Listo creada.
             String value = listaTipoReferencia.get(key);
             return value;
         }
         //Obtiene la lista de los tipos de referencia de los productos
-        public TreeMap<Integer, String> getidTipoReferencia() {
+        public TreeMap<Integer, String> getTiposReferencias() {
             ProductoDAO dao = new ProductoDAO();   
-            TreeMap<Integer, String> listaTipoReferencia = dao.cargarTiposReferencia();
+            TreeMap<Integer, String> listaTipoReferencia = dao.cargarTipoReferencia();  //Corregido
             return listaTipoReferencia;
         }		
 	
-        public String getIdEspecificaciones(int key) {
+        public String getEspecificacion(int key) {
             ProductoDAO dao = new ProductoDAO();
             TreeMap<Integer, String> listaEspecificaciones = dao.cargarEspecificaciones(); //No se ha creado el metodo cargar Especificaciones-Crear Clase Especificaciones
             String value = listaEspecificaciones.get(key);
             return value;
         }
       
-        public TreeMap<Integer, String> getIdEspecificaciones() {
+        public TreeMap<Integer, String> getEspecificaciones() {
             ProductoDAO dao = new ProductoDAO();
             TreeMap<Integer, String> listaEspecificaciones = dao.cargarEspecificaciones();
             return listaEspecificaciones;
