@@ -88,7 +88,7 @@ import persistencia.ProductoDAO;
                 }
             }
             else {
-                int filas = dao.guardarProductoExistente(p);  //metodo no existe
+                int filas = dao.guardarProductoExistente(p);  //metodo no existe- listo creado.
 	if (filas == 1) {
                     return true;
 	} 

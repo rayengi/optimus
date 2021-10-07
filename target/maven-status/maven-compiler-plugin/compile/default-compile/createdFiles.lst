@@ -1,0 +1,9 @@
+logica\Producto.class
+persistencia\ProductoDAO.class
+logica\LogicaProductos.class
+logica\LogicaUsuario.class
+logica\Usuario.class
+persistencia\UsuarioDAO.class
+logica\ColeccionProductos.class
+logica\Especificaciones.class
+persistencia\ConexionBD.class

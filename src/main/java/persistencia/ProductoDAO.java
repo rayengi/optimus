@@ -177,7 +177,26 @@ public class ProductoDAO {
         con.desconectar();
         return listaEspecificaciones;
     }
-    
+    /**
+     * Envía la sentencia SQL para actualizar el dato de un juguete existente
+     * @param p un objeto de tipo Juguete
+     * @return un número indicando la cantidad de registros afectados
+     */
+    public int guardarProductoExistente(Producto p) {
+        ConexionBD con = new ConexionBD();
+        int idProducto =p.getIdProducto();
+        String NombreProducto = p.getNombreProducto();
+        int idTipoReferencia = p.getIdTipoReferencia();
+        int idEspecificaciones = p.getIdEspecificaciones();
+        
+        
+        String sql = "UPDATE juguetes "+
+                          "SET NombreProducto = '" + NombreProducto + "' , idTipoReferencia = " + idTipoReferencia + " , idEspecificaciones = " + idEspecificaciones + 
+                          "WHERE idProducto = " + idProducto + " ";
+        int filas = con.ejecutarUpdate(sql);
+        con.desconectar();
+        return filas;
+    }
     
     
     
