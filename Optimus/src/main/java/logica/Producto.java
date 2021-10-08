@@ -29,7 +29,8 @@ public class Producto {
         this.largomin = largomin;
         this.largomax = largomax;
         this.alto = alto;
-        this.pesomin = pesomax;
+        this.pesomin = pesomin;
+	this.pesomax = pesomax;
     }
     
     public Producto(int idProducto, String NombreProducto, int idTipoReferencia, float diametromin, float diametromax, float largomin, float largomax, float alto, float pesomin, float pesomax) {
