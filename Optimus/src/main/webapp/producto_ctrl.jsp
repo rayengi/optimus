@@ -17,7 +17,7 @@
             String idProducto = request.getParameter("txtId");
             String NombreProducto = request.getParameter("txtNombre");
             String idTipoReferencia = request.getParameter("selTipoRef");
-            String idEspecificaciones = request.getParameter("SelEspecif");
+            float DiametroMax = request.getParameter("selTipoRef"
             String accion = request.getParameter("btnSubmit");
 
             if (accion.equals("nuevo")) {

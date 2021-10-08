@@ -8,18 +8,15 @@ package persistencia;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;							   
+import java.util.TreeMap;
 import logica.Producto;
-
-/**
- *
- * @author Grupo Optimus
- */
 
 /*Clase de gestion de base de datos de productos- Consulta la informacion (Read-Leer-) y 
 Envia la informacion para archivar(Inserta información nueva -Create- o 
 Actualiza -Update-). */
 
 public class ProductoDAO {
+    
     //Este método realiza la consulta a la base de datos de productos
     public ArrayList<Producto> consultarProductos() {
         ArrayList<Producto> lista = new ArrayList<>();
@@ -41,12 +38,7 @@ public class ProductoDAO {
         return lista;
     }
     
-    /**
-     * Envía la sentencia SQL para obtener la información de 1 producto específico y estructura
-     * la respuesta en un objeto de tipo Producto
-     * @param idAConsultar el id del producto para consultar
-     * @return un objeto de tipo Producto con la información cargada o null
-     */
+    //Envía la sentencia SQL para obtener la información de 1 producto específico y estructura
     public Producto consultarProducto(int idAConsultar) {
         Producto p = null;
         ConexionBD con = new ConexionBD();
@@ -92,14 +84,9 @@ public class ProductoDAO {
         con.desconectar();
         return id;
     }
-    //Agrego metodos faltantes
-    /**
-     * Envía la sentencia SQL para obtener la información de ciertos productos mediante filtro y estructura
-     * la respuesta en una lista de tipo Producto
-     * @param filtro el filtro para buscar datos en la lista de productos para consultar
-     * @return un arraylist de tipo Juguete con la información cargada
-     */
-     public ArrayList<Producto> consultarProductosPorFiltro(String filtro) {
+    
+    //Consultar producto por filtro
+    public ArrayList<Producto> consultarProductosPorFiltro(String filtro) {
         ArrayList<Producto> lista = new ArrayList<>();
         ConexionBD con = new ConexionBD();
         //revisar este codigo, es mysql, hay que crear las FK sino no funciona.
@@ -128,6 +115,62 @@ public class ProductoDAO {
         return lista;
     }
     
+   //Cargar los diferentes tipos referencia de producto desde la BD
+    public TreeMap<Integer, String> cargarTiposReferencia() {
+        TreeMap<Integer, String> listaTipos = new TreeMap<Integer, String>();
+        ConexionBD con = new ConexionBD();
+        ResultSet rs = con.ejecutarQuery("SELECT idTipoReferencia, idTipoReferencia FROM tiporeferencia");
+        try {
+            while (rs.next()) {
+                int id = rs.getInt("idTipoReferencia");
+                String tipo = rs.getString("idTipoReferencia");
+                listaTipos.put(id, tipo);
+            }
+        } catch (SQLException ex) {
+            con.desconectar();
+            return null;
+        }
+        con.desconectar();
+        return listaTipos;
+    }
     
     
+   //Cargar especificaciones de producto desde la BD 
+    // Este es el metodo que debemos cambiara para que reciba los 7 parametros
+    public TreeMap<Integer, String> cargarEspecificaciones() {
+        TreeMap<Integer, String> listaEspecificaciones = new TreeMap<Integer, String>();
+        ConexionBD con = new ConexionBD();
+        ResultSet rs = con.ejecutarQuery("SELECT idEspecificaciones, DiametroMin, "
+                + " FROM especificaciones");
+        try {
+            while (rs.next()) {
+                int id = rs.getInt("idEspecificaciones");
+                String estado = rs.getString("DiametroMin");
+                listaEspecificaciones.put(id, estado);
+            }
+        } catch (SQLException ex) {
+            con.desconectar();
+            return null;
+        }
+        con.desconectar();
+        return listaEspecificaciones;
+    }
+    
+    
+    //Almacenar los productos existentes
+        public int guardarProductoExistente(Producto p) {
+        ConexionBD con = new ConexionBD();
+        int id = p.getIdProducto();
+        String nombre = p.getNombreProducto();
+        int idTipo = p.getIdTipoReferencia();
+        int idEspecificaciones = p.getIdEspecificaciones();
+        
+        String sql = "UPDATE producto "+
+                    "SET nombre = '" + NombreProducto + "' , tiporeferencia_id = " + idTipoReferencia + 
+                    " ,  Especificaciones_id = " + idEspecificaciones +
+                    "WHERE id = " + id + " ";
+        int filas = con.ejecutarUpdate(sql);
+        con.desconectar();
+        return filas;
+    }
 }
