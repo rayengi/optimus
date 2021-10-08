@@ -1,4 +1,4 @@
-package logica;
+    package logica;
 
 /**
  *
@@ -10,22 +10,39 @@ public class Producto {
     private int idProducto;
     private String NombreProducto;
     private int idTipoReferencia;
-    private int idEspecificaciones;
-    //Constructores
+    private float diametromin;
+    private float diametromax;
+    private float  largomin;
+    private float largomax;
+    private float alto;
+    private float pesomin;
+    private float pesomax;
+    //Costructores
     public Producto() {
     }  
 
-    public Producto(String NombreProducto, int idTipoReferencia, int idEspecificaciones) {
+    public Producto(String NombreProducto, int idTipoReferencia, float diametromin, float diametromax, float largomin, float largomax, float alto, float pesomin, float pesomax) {
         this.NombreProducto = NombreProducto;
         this.idTipoReferencia = idTipoReferencia;
-        this.idEspecificaciones = idEspecificaciones;
+        this.diametromin = diamentromin;
+        this.diametromax = diametromax;
+        this.largomin = largomin;
+        this.largomax = largomax;
+        this.alto = alto;
+        this.pesomin = pesomax;
     }
     
-    public Producto(int idProducto, String NombreProducto, int idTipoReferencia, int idEspecificaciones) {
+    public Producto(int idProducto, String NombreProducto, int idTipoReferencia, float diametromin, float diametromax, float largomin, float largomax, float alto, float pesomin, float pesomax) {
         this.idProducto = idProducto;
         this.NombreProducto = NombreProducto;
         this.idTipoReferencia = idTipoReferencia;
-        this.idEspecificaciones = idEspecificaciones;
+        this.diametromin = diamentromin;
+        this.diametromax = diametromax;
+        this.largomin = largomin;
+        this.largomax = largomax;
+        this.alto = alto;
+        this.pesomin = pesomin;
+        this.pesomax = pesomax;
     }
     //Getters and Setters
     public int getIdProducto() {
@@ -51,64 +68,77 @@ public class Producto {
     public void setIdTipoReferencia(int idTipoReferencia) {
         this.idTipoReferencia = idTipoReferencia;
     }
+     public void setdiametromin(float diametromin) {
+        this.diametromin = diametromin;
+   }
+    public float getdiametromin() {
+        return diametromin;
+    }
+   public void setdiametromax(float diametromax) {
+        this.diametromax = diametromax;
+   }
+    public float getdiametromax() {
+        return diametromax;
+    }
+    public void setlargomin(float largomin) {
+        this.largomin = largomin;
+   }
+    public float getlargomin() {
+        return largomin;
+    }
+    public void setlargomax(float largomax) {
+        this.largomax = largomax;
+   }
+    public float getlargomax() {
+        return largomax;
+    }
+    public void setalto(float alto) {
+        this.alto = alto;
+   }
+    public float getalto() {
+        return alto;
+    }
+    public void setpesomin(float pesomin) {
+        this.pesomin = pesomin;
+   }
+    public float getpesomin() {
+        return pesomin;
+    }
+    public void setpesomax(float pesomax) {
+        this.pesomax = pesomax;
+   }
+    public float getpesomax() {
+        return pesomax;
+    }
+    public void setlargomax(float largomax) {
+        this.largomax = largomax;
+   }  
 
-    public float getDiametroMin() {
-        return DiametroMin;
+    public void setdiametromin(float diametromin) {
+        this.diametromin = diametromin;
     }
 
-    public float getDiametroMax() {
-        return DiametroMax;
+    public void setdiametromax(float diametromax) {
+        this.diametromax = diametromax;
     }
 
-    public float getLargoMin() {
-        return LargoMin;
+    public void setlargomin(float largomin) {
+        this.largomin = largomin;
     }
 
-    public float getLargoMax() {
-        return LargoMax;
+    public void setlargomax(float largomax) {
+        this.largomax = largomax;
     }
 
-    public float getAlto() {
-        return Alto;
+    public void setalto(float alto) {
+        this.alto = alto;
     }
 
-    public float getPesoMin() {
-        return PesoMin;
+    public void setpesomin(float pesomin) {
+        this.pesomin = pesomin;
     }
 
-    public float getPesoMax() {
-        return PesoMax;
-    }
-
-    public void setIdEspecificaciones(int idEspecificaciones) {
-        this.idEspecificaciones = idEspecificaciones;
-    }
-
-    public void setDiametroMin(float DiametroMin) {
-        this.DiametroMin = DiametroMin;
-    }
-
-    public void setDiametroMax(float DiametroMax) {
-        this.DiametroMax = DiametroMax;
-    }
-
-    public void setLargoMin(float LargoMin) {
-        this.LargoMin = LargoMin;
-    }
-
-    public void setLargoMax(float LargoMax) {
-        this.LargoMax = LargoMax;
-    }
-
-    public void setAlto(float Alto) {
-        this.Alto = Alto;
-    }
-
-    public void setPesoMin(float PesoMin) {
-        this.PesoMin = PesoMin;
-    }
-
-    public void setPesoMax(float PesoMax) {
-        this.PesoMax = PesoMax;
+    public void setpesomax(float pesomax) {
+        this.pesomax = pesomax;
     } 
 }
