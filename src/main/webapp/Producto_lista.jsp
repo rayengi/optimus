@@ -75,13 +75,13 @@
                                 <td scope="row"><%= p.getIdProducto()%></td>
                                 <td><%= p.getNombreProducto()%></td>
                                 <td><%= logicaProductos.getIdTipoReferencia(p.getIdTipoReferencia())%></td>
-                                <td><%= logicaProductos.getDiametromin(p.getDiametromin())%></td>
-                                <td><%= logicaProductos.getDiametromax(p.getDiametromax())%></td>
-                                <td><%= logicaProductos.getLargomin(p.getLargomin())%></td>
-                                <td><%= logicaProductos.getLargomax(p.getLargomax())%></td>
-                                <td><%= logicaProductos.getAlto(p.getAlto())%></td>
-                                <td><%= logicaProductos.getPesomin(p.getPesomin())%></td>
-                                <td><%= logicaProductos.getPesomax(p.getPesomax())%></td>
+                                <td><%= p.getDiametromin()%></td>
+                                <td><%= p.getDiametromax()%></td>
+                                <td><%= p.getLargomin()%></td>
+                                <td><%= p.getLargomax()%></td>
+                                <td><%= p.getAlto()%></td>
+                                <td><%= p.getPesomin()%></td>
+                                <td><%= p.getPesomax()%></td>
                                 
                                 <td>
                                     <a href="producto_form.jsp?accion=editar&id=<%= p.getIdProducto()%>"><button type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil-fill"></i></button></a>

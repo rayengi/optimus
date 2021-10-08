@@ -14,17 +14,16 @@
     </head>
     <body>
         <%
-            int idProducto = request.getParameter("intIdProducto");
+            int idProducto = Integer.parseInt(request.getParameter("intIdProducto"));
             String NombreProducto = request.getParameter("txtNombreProducto");
-            int idTipoReferencia = request.getParameter("selTipoRef");
-            float diametromin = request.getParameter("txtdiametromin)";
-            float diametromax = request.getParameter("txtdiametromax)";
-            float largomin  = request.getParameter("txtlargomin )";
-            float diametromin = request.getParameter("txtdiametromin)";
-            float largomax  = request.getParameter("txtlargomax )";
-            float alto  = request.getParameter("txtalto )";
-            float pesomin  = request.getParameter("txtpesomin )";
-            float pesomax = request.getParameter("txtpesomax)";
+            int idTipoReferencia = Integer.parseInt(request.getParameter("selTipoRef"));
+            float diametromin = Float.parseFloat(request.getParameter("txtdiametromin"));
+            float diametromax = Float.parseFloat(request.getParameter("txtdiametromax"));
+            float largomin = Float.parseFloat(request.getParameter("txtlargomin"));
+            float largomax = Float.parseFloat(request.getParameter("txtlargomax"));
+            float alto = Float.parseFloat(request.getParameter("txtalto"));
+            float pesomin = Float.parseFloat(request.getParameter("txtpesomin"));
+            float pesomax = Float.parseFloat(request.getParameter("txtpesomax"));
             String accion = request.getParameter("btnSubmit");
             
             Producto p = null;
@@ -46,4 +45,3 @@
         <a href="Producto_lista.jsp"><button type="submit" class="btn btn-primary" id="btnSubmit">Volver a la lista</button></a>
     </body>
 </html>
-

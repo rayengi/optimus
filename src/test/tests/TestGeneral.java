@@ -1,22 +1,23 @@
-/**
- *
- * @author Bizagi
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
- 
 package tests;
 
 import logica.Producto;
 import org.testng.Assert;
 import org.testng.annotations.Ignore;
-import org.testng.annotations.Test;
+//import org.testng.annotations.Test;
 import persistencia.ConexionBD;
 import persistencia.ProductoDAO;
 
-
-public class TestGeneral {
-    
-	@Ignore
-    @Test
+/**
+ *
+ * @author Grupo optimus
+ */
+public class TestGeneral { 
+    @Ignore
     public void verificarConexion() {
         ConexionBD con = new ConexionBD();
         Assert.assertTrue(con.isConectado(), "No hay conexión creada. ");
@@ -24,30 +25,28 @@ public class TestGeneral {
         Assert.assertFalse(con.isConectado(), "No se cerró conexión. ");
     }
     
-	@Ignore
-    @Test   
+    @Ignore
     public void verificarCargaProductos() {
         ProductoDAO dao = new ProductoDAO();
-        Assert.assertTrue(dao.consultarProductos().size() > 0, "No se cargaron datos. ");
-    }
-	
-    @Test
-    public void verificarCargaTiposProductos() {
-        ProductoDAO dao = new ProductoDAO();
-        Assert.assertTrue(dao.cargarTiposProductos().size() > 0, "No se cargaron datos de los tipos de producto. ");
+        Assert.assertTrue(dao.consultarProductos().size() > 0, "No se cargaron datos de productos. ");
     }
     
-    @Test
+    @Ignore
+    public void verificarCargaTipoReferencia() {
+        ProductoDAO dao = new ProductoDAO();
+        Assert.assertTrue(dao.cargarTiposReferencia().size() > 0, "No se cargaron datos de los tipos de referencia. ");
+    }
+    
     @Ignore
     public void verificarInsercionProducto() {
         ProductoDAO dao = new ProductoDAO();
-        Producto p = new Producto("Nombre Producto", 1, 1);
+        Producto p = new Producto("Cono de prueba", 1, 14.3, 14.7, 5.5, 6.5, 6.5, 33, 43);
         int id = dao.guardarNuevoProducto(p);
-        Assert.assertTrue(id > 0, "No se guardó dato de un juguete. ");
-        String sql = "DELETE FROM Producto WHERE id = " + id;
+        Assert.assertTrue(id > 0, "No se guardó dato de un producto. ");
+        String sql = "DELETE FROM productos WHERE idProducto = " + id;
         ConexionBD con = new ConexionBD();
         int cant = con.ejecutarUpdate(sql);
         Assert.assertTrue(cant == 1, "No se logró hacer limpieza del dato de prueba de un producto ingresado. ");
         con.desconectar();
-    }	  
+    }   
 }

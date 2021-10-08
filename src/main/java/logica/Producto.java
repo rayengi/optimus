@@ -7,7 +7,7 @@ package logica;
 //Clase Producto para crear objetos productos de acuerdo a base de datos
 public class Producto { 
     //Atributos
-    private int idProducto;
+    private int idProducto = 0;
     private String NombreProducto;
     private int idTipoReferencia;
     private float diametromin;
