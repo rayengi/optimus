@@ -2,15 +2,15 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-10-07T19:29:49 COT" name="tests.TestGeneral" finished-at="2021-10-07T19:29:56 COT" duration-ms="6593">
+  <suite started-at="2021-10-07T20:39:03 COT" name="tests.TestGeneral" finished-at="2021-10-07T20:39:09 COT" duration-ms="6140">
     <groups>
     </groups>
-    <test started-at="2021-10-07T19:29:49 COT" name="Command line test" finished-at="2021-10-07T19:29:56 COT" duration-ms="6593">
+    <test started-at="2021-10-07T20:39:03 COT" name="Command line test" finished-at="2021-10-07T20:39:09 COT" duration-ms="6140">
       <class name="tests.TestGeneral">
-        <test-method signature="verificarConexion()[pri:0, instance:tests.TestGeneral@43195e57]" started-at="2021-10-07T19:29:50 COT" name="verificarConexion" finished-at="2021-10-07T19:29:56 COT" duration-ms="6124" status="PASS">
+        <test-method signature="verificarCargaTipoReferencia()[pri:0, instance:tests.TestGeneral@43195e57]" started-at="2021-10-07T20:39:04 COT" name="verificarCargaTipoReferencia" finished-at="2021-10-07T20:39:09 COT" duration-ms="5750" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verificarConexion -->
+        </test-method> <!-- verificarCargaTipoReferencia -->
       </class> <!-- tests.TestGeneral -->
     </test> <!-- Command line test -->
   </suite> <!-- tests.TestGeneral -->

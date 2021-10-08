@@ -11,7 +11,7 @@ public class Producto {
     private String NombreProducto;
     private int idTipoReferencia;
     private int idEspecificaciones;
-    //Costructores
+    //Constructores
     public Producto() {
     }  
 

@@ -21,7 +21,7 @@ public class ProductoDAO {
     public ArrayList<Producto> consultarProductos() {
         ArrayList<Producto> lista = new ArrayList<>();
         ConexionBD con = new ConexionBD();
-        ResultSet rs = con.ejecutarQuery("SELECT idProducto, NombreProducto, idTipoReferencia, idEspecificaciones FROM Producto");
+        ResultSet rs = con.ejecutarQuery("SELECT idProducto, NombreProducto, idTipoReferencia, diametrominimo,diametromax,largomin,largomax,alto,pesomin,pesomax FROM producto");
         try {
             while (rs.next()) {
                 int idProducto = rs.getInt("idProducto");

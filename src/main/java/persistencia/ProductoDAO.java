@@ -23,7 +23,7 @@ public class ProductoDAO {
     public ArrayList<Producto> consultarProductos() {
         ArrayList<Producto> lista = new ArrayList<>();
         ConexionBD con = new ConexionBD();
-        ResultSet rs = con.ejecutarQuery("SELECT idProducto, NombreProducto, idTipoReferencia, idEspecificaciones FROM Producto");
+        ResultSet rs = con.ejecutarQuery("SELECT idProducto, NombreProducto, idTipoReferencia, idEspecificaciones FROM producto");
         try {
             while (rs.next()) {
                 int idProducto = rs.getInt("idProducto");
@@ -128,8 +128,8 @@ public class ProductoDAO {
      }
      
      /**
-     * Cargar los diferentes tipos de juguetes desde la BD
-     * @return un treemap con la lista de los tipos de juguetes
+     * Cargar los diferentes tipos de referencia desde la BD
+     * @return un treemap con la lista de los tipos de referencia
      */
     public TreeMap<Integer, String> cargarTipoReferencia() {
         TreeMap<Integer, String> listaTipos = new TreeMap<Integer, String>();
@@ -152,7 +152,7 @@ public class ProductoDAO {
      * Cargar los diferentes especificaciones de los productos desde la BD
      * @return un treemap con la lista de las especificaciones de los productos.
      */
-    //Terminar este metodo -pendiente.
+    //Terminar este metodo -pendiente -Listo,terminado.
     public TreeMap<Integer, Especificaciones> cargarEspecificaciones() {
         // Especificaciones medidas=new Especificaciones(); //hacer clase - listo, hecha
         TreeMap<Integer, Especificaciones> listaEspecificaciones = new TreeMap<Integer, Especificaciones>();

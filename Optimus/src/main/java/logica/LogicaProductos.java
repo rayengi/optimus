@@ -21,7 +21,7 @@ public class LogicaProductos {
     }
     
     //Obtiene el nombre del tipo de referencia dado el id correspondiente
-	public String getIdTipoReferencia(int key) {
+    public String getIdTipoReferencia(int key) {
         ProductoDAO dao = new ProductoDAO();
         TreeMap<Integer, String> listaTipoReferencia = dao.cargarTiposReferencia();
         String value = listaTipoReferencia.get(key);
@@ -29,27 +29,13 @@ public class LogicaProductos {
     }
 	
     //Obtiene la lista de los tipos de referencia
-	public TreeMap<Integer, String> getIdTiposReferencia() {
+    public TreeMap<Integer, String> getIdTiposReferencia() {
         ProductoDAO dao = new ProductoDAO();
         TreeMap<Integer, String> listaTipoReferencia = dao.cargarTiposReferencia();
         return listaTipoReferencia;
     }
     
-    //Obtiene las especificaciones del producto dado el id correspondiente
-	public String getIdEspecificacion(int key) {
-        ProductoDAO dao = new ProductoDAO();
-        TreeMap<Integer, String> listaEspecificaciones = dao.cargarEspecificaciones();
-        String value = listaEspecificaciones.get(key);
-        return value;
-    }
-	
-    //Obtiene la lista especificaciones del producto
-	public TreeMap<Integer, String> getIdEspecificaciones() {
-        ProductoDAO dao = new ProductoDAO();
-        TreeMap<Integer, String> listaEspecificaciones = dao.cargarEspecificaciones();
-        return listaEspecificaciones;
-    }
-	
+    	
     //cargar la informacion de los productos de la base de datos
     public boolean cargarTodosLosProductos(){
         ProductoDAO dao = new ProductoDAO();
@@ -75,14 +61,14 @@ public class LogicaProductos {
     }
 	
     //Carga la información de un solo juguete de la base de datos
-	public Producto cargarUnProducto(int idProducto) {
+    public Producto cargarUnProducto(int idProducto) {
         ProductoDAO dao = new ProductoDAO();
         Producto p = dao.consultarProducto(idProducto);
         return p;
     }
 	
     //Guarda la información de un producto capturada desde el formulario	
-	public boolean guardarProducto(Producto p) {
+    public boolean guardarProducto(Producto p) {
         ProductoDAO dao = new ProductoDAO();
         if (p.getIdProducto() == 0) {
             int id = dao.guardarNuevoProducto(p);
