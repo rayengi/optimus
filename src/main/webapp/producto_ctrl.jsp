@@ -2,9 +2,9 @@
     Document   : producto_ctrl
     Created on : Oct 3, 2021, 1:57:56 AM
     Author     : bizagi
---%>								 
+--%>								 							 
 
-<%@page import="logica.ColeccionProductos"%>
+<%@page import="logica.LogicaProductos"%>
 <%@page import="logica.Producto"%>
 
 <html>
@@ -14,23 +14,36 @@
     </head>
     <body>
         <%
-            String idProducto = request.getParameter("txtId");
-            String NombreProducto = request.getParameter("txtNombre");
-            String idTipoReferencia = request.getParameter("selTipoRef");
-            String idEspecificaciones = request.getParameter("SelEspecif");
+            int idProducto = request.getParameter("intIdProducto");
+            String NombreProducto = request.getParameter("txtNombreProducto");
+            int idTipoReferencia = request.getParameter("selTipoRef");
+            float diametromin = request.getParameter("txtdiametromin)";
+            float diametromax = request.getParameter("txtdiametromax)";
+            float largomin  = request.getParameter("txtlargomin )";
+            float diametromin = request.getParameter("txtdiametromin)";
+            float largomax  = request.getParameter("txtlargomax )";
+            float alto  = request.getParameter("txtalto )";
+            float pesomin  = request.getParameter("txtpesomin )";
+            float pesomax = request.getParameter("txtpesomax)";
             String accion = request.getParameter("btnSubmit");
-
+            
+            Producto p = null;
+            
             if (accion.equals("nuevo")) {
-                Producto p = new Producto(NombreProducto, idTipoReferencia, IdEspecificaciones);
-                ColeccionProductos coleccion = new ColeccionProductos();
-                boolean guardado = coleccion.guardarProducto(p);
-                if (guardado == true) {
-                    out.println("Producto guardado exitosamente");
-                } else {
-                    out.println("Información de Producto no se guardó.");
-                }
+                p = new Producto(NombreProducto, idTipoReferencia, diametromin, diametromax, largomin, largomax , alto, pesomin, pesomax);
             }
+            else if (accion.equals("editar")){
+                p = new Producto(idProducto, NombreProducto, idTipoReferencia, diametromin, diametromax, largomin, largomax , alto, pesomin, pesomax);	 
+            }
+            LogicaProductos logicaProductos = new LogicaProductos();
+            boolean guardado = logicaProductos.guardarProducto(p);
+            if (guardado == true) {
+                out.println("Producto guardado exitosamente");
+            } else {
+                out.println("Información de Producto no se guardó.");
+            }	 
         %>
         <a href="Producto_lista.jsp"><button type="submit" class="btn btn-primary" id="btnSubmit">Volver a la lista</button></a>
     </body>
 </html>
+

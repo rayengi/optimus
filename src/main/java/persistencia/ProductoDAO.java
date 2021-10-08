@@ -1,56 +1,58 @@
-package persistencia;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;							   
-import logica.Producto;
-import logica.Especificaciones;        
-
 /**
  *
  * @author Grupo Optimus
  */
 
+package persistencia;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;							   
+import java.util.TreeMap;
+import logica.Producto;
+
 /*Clase de gestion de base de datos de productos- Consulta la informacion (Read-Leer-) y 
-Envia la informacion para archivar(Inserta información nueva -Create- o 
-Actualiza -Update-). */
+Envia la informacion para archivar(Inserta información nueva -Create- o Actualiza -Update-). */
 
 public class ProductoDAO {
-    //Este método realiza la consulta a la base de datos de productos
+    
+    //Este método realiza la consulta a la base de datos de productos	   
     public ArrayList<Producto> consultarProductos() {
         ArrayList<Producto> lista = new ArrayList<>();
         ConexionBD con = new ConexionBD();
-        ResultSet rs = con.ejecutarQuery("SELECT idProducto, NombreProducto, idTipoReferencia, idEspecificaciones FROM producto");
+        String sql = "SELECT idProducto, NombreProducto, idTipoReferencia, diametromin, diametromax, "
+                + "largonmin, largomax, alto, pesomin, pesomax FROM producto";
+	ResultSet rs = con.ejecutarQuery(sql);									  
         try {
             while (rs.next()) {
                 int idProducto = rs.getInt("idProducto");
                 String NombreProducto = rs.getString("NombreProducto");
                 int idTipoReferencia = rs.getInt("idTipoReferencia");
-                int idEspecificaciones = rs.getInt("idEspecificaciones");
-                Producto p = new Producto(idProducto, NombreProducto, idTipoReferencia, idEspecificaciones);			   		   
+                float diametromin = rs.getFloat("diametromin");
+                float diametromax = rs.getFloat("diametromax");
+                float largomin = rs.getFloat("largomin");
+                float largomax = rs.getFloat("largomax");
+                float alto = rs.getFloat("alto");
+                float pesomin = rs.getFloat("pesomin");
+                float pesomax = rs.getFloat("pesomax");
+                Producto p = new Producto(idProducto, NombreProducto, idTipoReferencia, diametromin, diametromax, largomin, largomax, alto, pesomin, pesomax);			   		   
                 lista.add(p);
             }
         } catch (SQLException ex) {						  
+			con.desconectar();				  
             return null;
         }
         con.desconectar();				  
         return lista;
     }
     
-    /**
-     * Envía la sentencia SQL para obtener la información de 1 producto específico y estructura
-     * la respuesta en un objeto de tipo Producto
-     * @param idAConsultar el id del producto para consultar
-     * @return un objeto de tipo Producto con la información cargada o null
-     */
+	   
+    //Envía la sentencia SQL para obtener la información de 1 producto específico y estructura
     public Producto consultarProducto(int idAConsultar) {
         Producto p = null;
         ConexionBD con = new ConexionBD();
-        String sql = "SELECT idProducto, NombreProducto, idTipoReferencia, idEspecificaciones " +
-                     "FROM producto "+
+        String sql = "SELECT idProducto, NombreProducto, idTipoReferencia, diametromin, diametromax, " +
+                     "largomin, largomax, alto, pesomin, pesomax FROM producto"+
                      "WHERE id = " + idAConsultar + " ";
         ResultSet rs = con.ejecutarQuery(sql);
         try {
@@ -58,8 +60,14 @@ public class ProductoDAO {
                 int idProducto = rs.getInt("idProducto");
                 String NombreProducto = rs.getString("NombreProducto");
                 int idTipoReferencia = rs.getInt("idTipoReferencia");
-                int idEspecificaciones = rs.getInt("idEspecificaciones");
-                p = new Producto(idProducto, NombreProducto, idTipoReferencia, idEspecificaciones);
+                float diametromin = rs.getFloat("diametromin");
+                float diametromax = rs.getFloat("diametromax");
+                float largomin = rs.getFloat("largomin");
+                float largomax = rs.getFloat("largomax");
+                float alto = rs.getFloat("alto");
+                float pesomin = rs.getFloat("pesomin");
+                float pesomax = rs.getFloat("pesomax");
+                p = new Producto(idProducto, NombreProducto, idTipoReferencia, diametromin, diametromax, largomin, largomax, alto, pesomin, pesomax);
             }
         } catch (SQLException ex) {
             con.desconectar();
@@ -69,15 +77,54 @@ public class ProductoDAO {
         return p;
     }
 
+	   
+    // Consultar producto teniendo mediante filtro y estructura
+    public ArrayList<Producto> consultarProductoPorFiltro(String filtro) {
+        ArrayList<Producto> lista = new ArrayList<>();
+        ConexionBD con = new ConexionBD();
+        String sql = "SELECT idProducto, NombreProducto,idTipoReferencia, diametromin, diametromax, largomin, largomax, alto, pesomin,pesomax  " +
+                     "FROM producto p " +
+                     "JOIN tiporeferencia t ON (p.idtiporeferencia = t.idtiporeferencia) " +
+                     "WHERE p.NombreProducto LIKE '%" + filtro + "%' " +
+                     "OR t.tiporeferencia LIKE '%" + filtro + "%' ";
+        ResultSet rs = con.ejecutarQuery(sql);
+        try {
+            while (rs.next()) {
+                int idProducto = rs.getInt("idProducto");
+                String NombreProducto = rs.getString("NombreProducto");
+                int idTipoReferencia = rs.getInt("idTipoReferencia");
+                float diametromin = rs.getFloat("diametromin");
+                float diametromax = rs.getFloat("diametromax");
+                float largomin = rs.getFloat("largomin");
+                float largomax = rs.getFloat("largomax");
+                float alto = rs.getFloat("alto");
+                float pesomin = rs.getFloat("pesomin");
+                float pesomax = rs.getFloat("pesomax");
+                Producto p = new Producto(idProducto, NombreProducto, idTipoReferencia, diametromin, diametromax, largomin, largomax, alto, pesomin, pesomax);
+                lista.add(p);
+            }
+        } catch (SQLException ex) {
+            con.desconectar();
+            return null;
+        }
+        con.desconectar();
+        return lista;
+    }
+
     //Metodo para Insertar nuevo producto (Create)
-    public int guardarNuevoProducto(Producto p) {
+    public int guardarNuevoProducto(Producto p) {																				   
         ConexionBD con = new ConexionBD();
         String NombreProducto = p.getNombreProducto();
         int idTipoReferencia = p.getIdTipoReferencia();
-        int idEspecificaciones = p.getIdEspecificaciones();
-        
-        String sql = "INSERT INTO producto (NombreProducto, idTipoReferencia, idEspecificaciones) VALUES ('"+NombreProducto+"', '"+idTipoReferencia+"', '"+idEspecificaciones+"')";
-        System.out.println(sql);
+        float diametromin = p.getDiametromin();
+        float diametromax = p.getDiametromax();
+        float largomin = p.getLargomin();
+        float largomax = p.getLargomax();
+        float alto = p.getAlto();
+        float pesomin = p.getPesomin();
+        float pesomax = p.getPesomax();
+        String sql = "INSERT INTO `dboptimus`.`producto`(NombreProducto,idTipoReferencia,diametromin,diametromax,largomin,largomax,alto,pesomin,pesomax)" + 
+                     "VALUES('"+NombreProducto+"','"+idTipoReferencia+"','"+diametromin+"','"+diametromax+"','"+largomin+"','" + largomax+"','"+alto+"','"+pesomin+"','"+pesomax+"') ";       
         ResultSet rs = con.ejecutarInsert(sql);
         int id = 0;
         try {
@@ -91,55 +138,20 @@ public class ProductoDAO {
         con.desconectar();
         return id;
     }
-    //Agrego metodos faltantes
-    /**
-     * Envía la sentencia SQL para obtener la información de ciertos productos mediante filtro y estructura
-     * la respuesta en una lista de tipo Producto
-     * @param filtro el filtro para buscar datos en la lista de productos para consultar
-     * @return un arraylist de tipo Juguete con la información cargada
-     */
-     public ArrayList<Producto> consultarProductosPorFiltro(String filtro) {
-        ArrayList<Producto> lista = new ArrayList<>();
-        ConexionBD con = new ConexionBD();
-        //revisar este codigo, es mysql, hay que crear las FK sino no funciona.
-        String sql = "SELECT p.idProducto, p.NombreProducto, p.idTipoReferencia, t.idTipoReferencia, p.idEspecificaciones, e.idEspecificaciones " +
-                     "FROM producto p " +
-                     "JOIN tiporeferencia t ON (p.idTipoReferencia = t.idTipoReferencia) " +
-                     "JOIN especificaciones e ON (p.idEspecificaciones = e.idEspecificaciones) " +
-                     "WHERE p.NombreProducto LIKE '%" + filtro + "%' " +
-                     "OR t.idTipoReferencia LIKE '%" + filtro + "%' " +
-                     "OR e.idEspecificaciones LIKE '%" + filtro + "%' "; 
-        ResultSet rs = con.ejecutarQuery(sql);
-        try {
-            while (rs.next()) {
-                int idProducto = rs.getInt("idProducto");
-                String NombreProducto = rs.getString("NombreProducto");
-                int idTipoReferencia = rs.getInt("idTipoReferencia");
-                int idEspecificaciones = rs.getInt("idEspecificaciones");
-                Producto p = new Producto(idProducto, NombreProducto, idTipoReferencia, idEspecificaciones);
-                lista.add(p);
-            }
-        } catch (SQLException ex) {
-            con.desconectar();
-            return null;
-        }
-        con.desconectar();
-        return lista;
-     }
-     
-     /**
-     * Cargar los diferentes tipos de referencia desde la BD
-     * @return un treemap con la lista de los tipos de referencia
-     */
-    public TreeMap<Integer, String> cargarTipoReferencia() {
+    
+	   
+   //Cargar los diferentes tipos referencia de producto desde la BD
+																 
+	   
+    public TreeMap<Integer, String> cargarTiposReferencia() {
         TreeMap<Integer, String> listaTipos = new TreeMap<Integer, String>();
         ConexionBD con = new ConexionBD();
-        ResultSet rs = con.ejecutarQuery("SELECT idTipoReferencia, Referencia FROM tiporeferencia ");
+        ResultSet rs = con.ejecutarQuery("SELECT idTipoReferencia, idTipoReferencia FROM tiporeferencia");
         try {
             while (rs.next()) {
-                int idTipoReferencia = rs.getInt("idTipoReferencia");
-                String Referencia = rs.getString("Referencia");
-                listaTipos.put(idTipoReferencia, Referencia);
+                int id = rs.getInt("idTipoReferencia");
+                String tipo = rs.getString("idTipoReferencia");
+                listaTipos.put(id, tipo);
             }
         } catch (SQLException ex) {
             con.desconectar();
@@ -148,60 +160,28 @@ public class ProductoDAO {
         con.desconectar();
         return listaTipos;
     }
-    /*
-     * Cargar los diferentes especificaciones de los productos desde la BD
-     * @return un treemap con la lista de las especificaciones de los productos.
-     */
-    //Terminar este metodo -pendiente -Listo,terminado.
-    public TreeMap<Integer, Especificaciones> cargarEspecificaciones() {
-        // Especificaciones medidas=new Especificaciones(); //hacer clase - listo, hecha
-        TreeMap<Integer, Especificaciones> listaEspecificaciones = new TreeMap<Integer, Especificaciones>();
+    
+    
+    //Almacenar los productos existentes
+        public int guardarProductoExistente(Producto p) {
         ConexionBD con = new ConexionBD();
-        ResultSet rs = con.ejecutarQuery("SELECT idEspecificaciones, DiametroMin, DiametroMax, LargoMin, LargoMax, Alto, PesoMin, PesoMax  FROM especificaciones ");
-        try {
-            while (rs.next()) {
-                int idEspecificaciones = rs.getInt("idEspecificaciones");
-                float DiametroMin = rs.getFloat("DiametroMin");
-                float DiametroMax = rs.getFloat("DiametroMax");
-                float LargoMin = rs.getFloat("LargoMin");
-                float LargoMax = rs.getFloat("LargoMax");
-                float Alto = rs.getFloat("Alto");
-                float PesoMin = rs.getFloat("PesoMin");
-                float PesoMax = rs.getFloat("PesoMax");
-                listaEspecificaciones.put(idEspecificaciones, new Especificaciones(DiametroMin, DiametroMax, LargoMin, LargoMax, Alto, PesoMin, PesoMax));
-            }
-        } catch (SQLException ex) {
-            con.desconectar();
-            return null;
-        }
-        con.desconectar();
-        return listaEspecificaciones;
-    }
-    /**
-     * Envía la sentencia SQL para actualizar el dato de un juguete existente
-     * @param p un objeto de tipo Juguete
-     * @return un número indicando la cantidad de registros afectados
-     */
-    public int guardarProductoExistente(Producto p) {
-        ConexionBD con = new ConexionBD();
-        int idProducto =p.getIdProducto();
+        int idproducto = p.getIdProducto();
         String NombreProducto = p.getNombreProducto();
         int idTipoReferencia = p.getIdTipoReferencia();
-        int idEspecificaciones = p.getIdEspecificaciones();
-        
-        
-        String sql = "UPDATE juguetes "+
-                          "SET NombreProducto = '" + NombreProducto + "' , idTipoReferencia = " + idTipoReferencia + " , idEspecificaciones = " + idEspecificaciones + 
-                          "WHERE idProducto = " + idProducto + " ";
+        float diametromin = p.getDiametromin();
+        float diametromax = p.getDiametromax();
+        float largomin = p.getLargomin();
+        float largomax = p.getLargomax();
+        float alto = p.getAlto();
+        float pesomin = p.getPesomin();
+        float pesomax = p.getPesomax();
+        String sql = "UPDATE producto"+
+                     "SET NombreProducto = '" + NombreProducto + "' , idTipoReferencia= " + idTipoReferencia + " , diametromin = '" + diametromin + 
+                     "' , diametromax= " + diametromax + " , largomin = '" + largomin + "', largomax = " + largomax + ", alto = '" + alto + 
+                     ", pesomin= " + pesomin + " , pesomax = '" + pesomax + "' " +
+                     "WHERE idproducto = " + idproducto + " ";
         int filas = con.ejecutarUpdate(sql);
         con.desconectar();
         return filas;
     }
-    
-    
-    
-}   
-     
-    
-    
-    
+}					 
