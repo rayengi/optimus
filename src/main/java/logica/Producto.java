@@ -22,7 +22,7 @@ public class Producto {
     public Producto() {
     }  
 
-    public Producto(String NombreProducto, int idTipoReferencia, float diametromin, float diametromax, float largomin, 
+    public Producto(String NombreProducto, int idTipoReferencia, float diametromin, float diametromax, float largomin,
         float largomax, float alto, float pesomin, float pesomax) {
         this.NombreProducto = NombreProducto;
         this.idTipoReferencia = idTipoReferencia;

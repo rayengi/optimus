@@ -1,3 +1,8 @@
 
 *.class
 Optimus/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+target/classes/logica/ColeccionProductos.class
+target/classes/logica/Producto.class
+target/maven-archiver/pom.properties
+Pom.xml
+src/main/java/persistencia/ConexionBD.java
