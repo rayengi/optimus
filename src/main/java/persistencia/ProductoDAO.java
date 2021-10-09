@@ -126,13 +126,13 @@ public class ProductoDAO {
         float pesomax = p.getPesomax();
         String sql = "INSERT INTO `dboptimus`.`producto`(NombreProducto,idTipoReferencia,diametromin,diametromax,largomin,largomax,alto,pesomin,pesomax)" + 
                      "VALUES('"+NombreProducto+"',"+idTipoReferencia+","+diametromin+","+diametromax+","+largomin+"," + largomax+","+alto+","+pesomin+","+pesomax+" ) ";       
-        ResultSet rs = con.ejecutarInsert(sql);
-        int id = 0;
+        ResultSet rs = con.ejecutarInsert(sql); //se verifico el insert en la base de datos, ok.
+        int id = 0;                       
         try {
             if (rs.next()){
-                id = rs.getInt(1);
+                id = rs.getInt(1);             //Posible error en esta instrucción
             }
-        } catch (SQLException ex) {
+        } catch (SQLException ex) {            //bug capturado por esta instrucción - no ha pasado la prueba unitaria
             con.desconectar();
             return 0; 
         }
