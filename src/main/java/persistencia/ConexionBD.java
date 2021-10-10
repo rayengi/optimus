@@ -15,7 +15,7 @@ public class ConexionBD {
     private String host = "localhost:3306";
     private String baseDatos = "dboptimus";
     private String username = "root"; 
-    private String password = "root"; //Puede variar según la base de datos local										
+    private String password = "Jehova_65#"; //Puede variar según la base de datos local										
     private Connection conexion;
     private Statement ejecutor;
 
